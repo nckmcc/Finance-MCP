@@ -1,5 +1,7 @@
 FROM python:3.11-slim
 
-RUN pip install yahoo-finance-server
+RUN pip install --no-cache-dir yahoo-finance-server
 
-CMD yahoo-finance-server --transport http --host 0.0.0.0 --port $PORT
+ENV PYTHONUNBUFFERED=1
+
+CMD ["sh", "-c", "yahoo-finance-server --transport http --host 0.0.0.0 --port ${PORT:-8080}"]
