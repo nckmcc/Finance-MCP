@@ -4,4 +4,4 @@ RUN pip install --no-cache-dir yahoo-finance-server
 
 ENV PYTHONUNBUFFERED=1
 
-CMD ["sh", "-c", "echo 'Starting server...' && yahoo-finance-server --transport http --host 0.0.0.0 --port ${PORT:-8080} || echo 'Server failed with exit code $?'"]
+CMD ["sh", "-c", "echo '=== PATH ===' && echo $PATH && echo '=== Which binary ===' && which yahoo-finance-server || echo 'binary not found' && echo '=== Trying to run ===' && yahoo-finance-server --help || echo 'Command failed' && echo '=== Done ==='"]
